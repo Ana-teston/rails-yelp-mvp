@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @review %>
+
+<div>
+  <%= link_to "Edit this review", edit_review_path(@review) %> |
+  <%= link_to "Back to restaurant", restaurants_path %>
+
+  <%= button_to "Destroy this review", @review, method: :delete %>
+</div>
+<div class="mt-4">
+  <h2>Reviews:</h2>
+  <%= link_to'write a review', new_restaurant_review_path %>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+    <li><%= review.content %></li>
+  </ul>
+</div>

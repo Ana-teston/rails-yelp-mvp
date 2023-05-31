@@ -2,9 +2,31 @@
 
 <%= render @restaurant %>
 
+<h2>Reviews</h2>
+
+<% if @restaurant.reviews.any? %>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+      <li>
+        <strong>Rating:</strong> <%= review.rating %> |
+        <strong>Content:</strong> <%= review.content %>
+        |
+        <%= link_to 'Delete Review', @review, method: :delete, data: { confirm: 'Are you sure you want to delete this review?' } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews yet.</p>
+<% end %>
+
+
+<p>
+  <%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %>
+</p>
+
 <div>
   <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
   <%= link_to "Back to restaurants", restaurants_path %>
 
-  <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+  <%= button_to "Delete this restaurant", @restaurant, method: :delete %>
 </div>
